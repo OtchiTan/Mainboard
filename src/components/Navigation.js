@@ -1,12 +1,17 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { AppBar, Button, Toolbar } from '@mui/material';
+import { Box } from '@mui/system';
 
 const Navigation = () => {
     return (
-        <div className="navigation">
-            <NavLink to="/" activeClassName="activeroute">Home</NavLink>
-            <NavLink to="/test" activeClassName="activeroute">Test</NavLink>
-        </div>
+        <Box sx={{flexGrow:1}}>
+            <AppBar color="primary" position="static">
+                <Toolbar>
+                    <Button href="/" variant="contained">Home</Button>
+                    <Box sx={{flexGrow:1}}/>
+                    <Button href="/login" variant="contained">Login</Button>
+                </Toolbar>
+            </AppBar>
+        </Box>
     );
 };
 
