@@ -27,13 +27,14 @@ const theme = createTheme({
 function App() {
   return (
     <div className="App">
-      <ThemeProvider theme= {theme}/>
-      <Router>
-          <Switch>
-              <Route path="/login" exact component={Login}/>
-              <Route component={Home}/>
-          </Switch>
-      </Router>
+      <ThemeProvider theme= {theme}>
+        <Router>
+            <Switch>
+                <Route path="/login" exact component={Login}/>
+                <Route component={Home}/>
+            </Switch>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }
