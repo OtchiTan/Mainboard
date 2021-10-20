@@ -1,32 +1,33 @@
 import { Button, Container, TextField } from '@mui/material';
 import Navigation from '../components/Navigation';
-import Axios from 'axios'
-import { useState } from 'react';
+import AuthContext from '../components/AuthContext'
+//import Axios from 'axios'
+import { useContext, useState } from 'react';
 
 const Login = () => {
+    const [token, setToken] = useContext(AuthContext)
     const [refLogin,setRefLogin] = useState("")
     const [refPwd,setRefPwd] = useState("")
+
     const Attempt = () => {
-        const body = {
+        setToken("Test")
+        console.log(token)
+        /*const body = {
             login:refLogin,
             pwd:refPwd
         }
-        /*Axios.post('localhost:8000',body)
+        Axios.post('localhost:8000',body)
                 .then((res) => {
                     console.log(res)
                 })*/
-        Axios({
-            method:'POST',
-            url:'http://localhost:8000',
-            data:body
-        })
+        
     }
     const loginChangeHandler = (event) => {
         setRefLogin(event.target.value)
     }
     const pwdChangeHandler = (event) => {
         setRefPwd(event.target.value)
-    }  
+    } 
 
     return (
         <div className="page">

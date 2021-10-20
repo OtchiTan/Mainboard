@@ -6,9 +6,9 @@ const Navigation = () => {
         <Box sx={{flexGrow:1}}>
             <AppBar color="primary" position="static">
                 <Toolbar>
-                    <Button href="/" variant="contained">Home</Button>
+                    <Button href="/" color="inherit">Home</Button>
                     <Box sx={{flexGrow:1}}/>
-                    <Button href="/login" variant="contained">Login</Button>
+                    <Button href="/login" color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
         </Box>

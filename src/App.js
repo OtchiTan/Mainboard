@@ -1,4 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material';
+import AuthContext from './components/AuthContext'
+import { useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -25,17 +27,24 @@ const theme = createTheme({
 })
 
 function App() {
+  const Context = AuthContext
+  const [token, setToken] = useState(null)
+  if (!token) console.log("User not connected")
+  else console.log("User is connected")
+
   return (
-    <div className="App">
-      <ThemeProvider theme= {theme}>
-        <Router>
+    <Context.Provider value={[token, setToken]}>
+      <div className="App">
+        <ThemeProvider theme= {theme}>
+          <Router>
             <Switch>
-                <Route path="/login" exact component={Login}/>
-                <Route component={Home}/>
+              <Route path="/login" exact component={Login}/>
+              <Route component={Home}/>
             </Switch>
-        </Router>
-      </ThemeProvider>
-    </div>
+          </Router>
+        </ThemeProvider>
+      </div>
+    </Context.Provider>
   );
 }
 
