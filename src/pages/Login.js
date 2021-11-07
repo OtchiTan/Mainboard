@@ -1,26 +1,26 @@
 import { Button, Container, TextField } from '@mui/material';
 import Navigation from '../components/Navigation';
 import AuthContext from '../components/AuthContext'
-//import Axios from 'axios'
-import { useContext, useState } from 'react';
+import Axios from 'axios'
+import { useContext, useEffect, useState } from 'react';
 
 const Login = () => {
     const [token, setToken] = useContext(AuthContext)
     const [refLogin,setRefLogin] = useState("")
     const [refPwd,setRefPwd] = useState("")
+    const [appState, setAppState] = useState()
 
     const Attempt = () => {
-        setToken("Test")
-        console.log(token)
-        /*const body = {
-            login:refLogin,
-            pwd:refPwd
-        }
-        Axios.post('localhost:8000',body)
-                .then((res) => {
-                    console.log(res)
-                })*/
+        useEffect(() => {
+            Axios.post('http://localhost:8000/').then((res) => {
+                var test = res.data.map()
+                setAppState(test)
+            })
+        })
         
+        setToken(appState)
+
+        console.log(token)
     }
     const loginChangeHandler = (event) => {
         setRefLogin(event.target.value)
@@ -42,11 +42,5 @@ const Login = () => {
         </div>
     );
 };
-/*
-
-                    <TextField sx={{marginY:"1rem"}} variant="standard" label="Username" ref={refLogin}/>
-                    <TextField sx={{marginY:"1rem"}} variant="standard" type="password" label="Password" ref={refPwd}/>
-                    <Button type="submit" sx={{marginY:"1rem"}}>Se connecter</Button>
-*/
 
 export default Login;
