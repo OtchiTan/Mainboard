@@ -1,24 +1,24 @@
-import { createTheme, CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@emotion/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './styles/index.scss'
+import { createTheme, CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
 
 const theme = createTheme({
   palette: {
     mode:"dark",
     primary: {
-      light: '#8561c5',
-      main: '#673ab7',
-      dark: '#482880',
+      light: '#c158dc',
+      main: '#8e24aa',
+      dark: '#5c007a',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#6a52b3',
-      main: '#4527a0',
-      dark: '#301b70',
+      light: '#fff1ff',
+      main: '#e1bee7',
+      dark: '#af8eb5',
       contrastText: '#fff',
     },
     background:{

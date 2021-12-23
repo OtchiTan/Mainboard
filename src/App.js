@@ -1,30 +1,17 @@
-import AuthContext from './components/AuthContext'
-import { useState } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from 'react-router-dom'
-import Home from './pages/Home';
-import Login from './pages/Login';
+import Home from "./pages/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
 function App() {
-  const Context = AuthContext
-  const [token, setToken] = useState(null)
-  if (!token) console.log("User not connected")
-  else console.log("User is connected")
-
   return (
-    <Context.Provider value={[token, setToken]}>
-      <div className="App">
-        <Router>
-          <Switch>
-            <Route path="/login" exact component={Login}/>
-            <Route component={Home}/>
-          </Switch>
-        </Router>
-      </div>
-    </Context.Provider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>          
+    </BrowserRouter>
   );
 }
 

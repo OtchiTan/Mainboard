@@ -1,17 +1,14 @@
 import { AppBar, Button, Toolbar } from '@mui/material';
-import { Box } from '@mui/system';
+import React from 'react';
 
 const Navigation = () => {
     return (
-        <Box sx={{flexGrow:1}}>
-            <AppBar sx={{bgcolor:"primary.dark"}} position="static">
-                <Toolbar>
-                    <Button href="/" color="inherit">Home</Button>
-                    <Box sx={{flexGrow:1}}/>
-                    <Button href="/login" color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </Box>
+        <AppBar sx={{bgcolor:'primary.dark'}}>
+            <Toolbar variant='dense' sx={{display:'flex', justifyContent:'space-between'}}>
+                <Button href='/' color='inherit'>Accueil</Button>
+                <Button href='/login' color='inherit'>Se connecter</Button>
+            </Toolbar>
+        </AppBar>
     );
 };
 

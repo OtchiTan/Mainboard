@@ -1,28 +1,26 @@
-import React from 'react';
+import { Box, Grid, Paper } from '@mui/material';
+import React, { Component } from 'react';
+import HomeButton from '../components/HomeButton';
 import Navigation from '../components/Navigation';
-import { Button, Container, Box } from '@mui/material';
 
-
-const Home = () => {
-    return (
-        <Box>
-            <Navigation/>
-
-            <Container maxWidth="md" sx={{
-                    p:"5%",
-                    display:"grid",
-                    gap:1,
-                    gridTemplate:"repeat(2,1fr) / repeat(3,1fr)"
-                }}>
-                <Button variant="outlined" href="http://pma.otchi.games">PhpMyAdmin</Button>
-                <Button variant="outlined" href="http://portfolio.otchi.games">Portfolio</Button>
-                <Button variant="outlined" href="https://github.com/OtchiTan">Github</Button>
-                <Button variant="outlined" href="https://gitlab.com/OtchiTan">Gitlab</Button>
-                <Button variant="outlined">...</Button>
-                <Button variant="outlined">...</Button>
-            </Container>
-        </Box>
-    );
-};
+class Home extends Component {
+    render() {
+        return (
+            <Box height="90vh">
+                <Navigation/>              
+                <Paper sx={{marginTop:'5rem', marginX:'3rem', height:'85vh'}}>
+                    <Grid container sx={{height:'100%', width:'100%'}}>
+                        <HomeButton name="PhpMyAdmin" href="https://pma.otchi.games"/>
+                        <HomeButton name="Portfolio" href="https://portfolio.otchi.games"/>
+                        <HomeButton name="Github" href="https://github.com/OtchiTan"/>
+                        <HomeButton name="Gitlab" href="https://gitlab.com/OtchiTan"/>
+                        <HomeButton/>
+                        <HomeButton/>
+                    </Grid>
+                </Paper>  
+            </Box>
+        );
+    }
+}
 
 export default Home;
