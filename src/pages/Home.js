@@ -1,6 +1,6 @@
 import { Box, Grid, Paper } from '@mui/material';
 import React, { Component } from 'react';
-import HomeButton from '../components/HomeButton';
+import GridButton from '../components/GridButton';
 import Navigation from '../components/Navigation';
 
 class Home extends Component {
@@ -10,12 +10,12 @@ class Home extends Component {
                 <Navigation/>              
                 <Paper sx={{marginTop:'5rem', marginX:'3rem', height:'85vh'}}>
                     <Grid container sx={{height:'100%', width:'100%'}}>
-                        <HomeButton name="PhpMyAdmin" href="https://pma.otchi.games"/>
-                        <HomeButton name="Portfolio" href="https://portfolio.otchi.games"/>
-                        <HomeButton name="Github" href="https://github.com/OtchiTan"/>
-                        <HomeButton name="Gitlab" href="https://gitlab.com/OtchiTan"/>
-                        <HomeButton/>
-                        <HomeButton/>
+                        <GridButton xs={4} name="PhpMyAdmin" href="https://pma.otchi.games"/>
+                        <GridButton xs={4} name="Portfolio" href="https://portfolio.otchi.games"/>
+                        <GridButton xs={4} name="Github" href="https://github.com/OtchiTan"/>
+                        <GridButton xs={4} name="Gitlab" href="https://gitlab.com/OtchiTan"/>
+                        <GridButton xs={4}/>
+                        <GridButton xs={4}/>
                     </Grid>
                 </Paper>  
             </Box>
