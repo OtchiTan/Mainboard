@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { Container, Draggable } from 'react-smooth-dnd';
 import DeleteIcon from '@mui/icons-material/Delete'
 import Navigation from '../components/Navigation';
-import axios from 'axios'
 import { Edit } from '@mui/icons-material';
+import AxiosClient from '../services/AxiosClient';
 
 const Portfolio = () => {
     const [projets, setProjets] = useState([])
@@ -25,7 +25,7 @@ const Portfolio = () => {
     })
 
     const getProjects = () => {
-        axios.get('http://localhost:8000/projets')
+        AxiosClient.get('projets')
                 .then((res) => {
                     setProjets(res.data)
                 })
@@ -46,7 +46,7 @@ const Portfolio = () => {
             proj.order = i
             i++
         });
-        axios.post('http://localhost:8000/projets/reorder',{projets:projs})
+        AxiosClient.post('projets/reorder',{projets:projs})
     }
 
     const handleChange = (event) => {
@@ -67,14 +67,14 @@ const Portfolio = () => {
     const handleSubmit = async event => {
         event.preventDefault();
 
-        axios.post('http://localhost:8000/projets/new',{newProjet:newProject})
+        AxiosClient.post('projets/new',{newProjet:newProject})
             .then(res => {
                 if (res.data.success) getProjects()
             })
     }
 
     const handleDelete = (id) => {
-        axios.post('http://localhost:8000/projets/delete',{projetId:id})
+        AxiosClient.post('projets/delete',{projetId:id})
             .then(res => {
                 if (res.data.success) getProjects()
             })

@@ -1,9 +1,9 @@
 import { Button, FormControl, MenuItem, Paper, Select, TextField } from '@mui/material';
 import { Box } from '@mui/system';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Navigation from '../components/Navigation';
+import AxiosClient from '../services/AxiosClient';
 
 const PortfolioProject = () => {
     const [project, setProject] = useState({
@@ -23,8 +23,8 @@ const PortfolioProject = () => {
     const params = useParams()
     const navigate = useNavigate()
 
-    const getProject = () => {
-        axios.get('http://localhost:8000/projet/' + params.id)
+    useEffect(() => {
+        AxiosClient.get('projet/' + params.id)
             .then(res => {
                 var proj = res.data
 
@@ -35,11 +35,7 @@ const PortfolioProject = () => {
 
                 setProject(proj)
             })
-    }
-
-    useEffect(() => {
-        getProject()
-    }, [])
+    }, [params.id])
     
 
     const handleChange = (event) => {
@@ -59,7 +55,7 @@ const PortfolioProject = () => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        axios.post('http://localhost:8000/projets/update/' + params.id, {project:project})
+        AxiosClient.post('projets/update/' + params.id, {project:project})
             .then(res => {
                 if (res.data.success) navigate('/portfolio')
             })

@@ -1,5 +1,5 @@
-import axios from 'axios'
 import jwtDecode from 'jwt-decode'
+import AxiosClient from './AxiosClient'
 import { addItem, getItem, removeItem } from './LocalStorage'
 
 export function hasAuthenticated() {
@@ -14,8 +14,8 @@ export function hasAuthenticated() {
 }
 
 export function login(credentials) {
-    return axios
-        .post('http://localhost:8000/loginAttempt', credentials)
+    return AxiosClient
+        .post('loginAttempt', credentials)
         .then(res => res.data.token)
         .then(token => {
             if (tokenIsValid(token)) {

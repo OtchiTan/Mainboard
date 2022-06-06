@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Paper } from '@mui/material';
 import React from 'react';
 import GridButton from '../components/GridButton';
 import Navigation from '../components/Navigation';
@@ -11,7 +11,7 @@ const Panel = () => {
                 <Grid container sx={{height:'100%', width:'100%'}}>
                     <GridButton xs={3} name='Portfolio' href='/portfolio'/>
                     <GridButton xs={3} name='Password' href='/changePassword'/>
-                    <GridButton xs={3} name="Map" href="http://map.otchi.games:30160"/>
+                    <GridButton xs={3}/>
                     <GridButton xs={3}/>
                     <GridButton xs={3}/>
                     <GridButton xs={3}/>

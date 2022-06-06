@@ -1,22 +1,10 @@
-import { Button, FormControl, FormHelperText, OutlinedInput, Paper, TextField, useFormControl } from '@mui/material';
+import { Button, FormControl, OutlinedInput, Paper, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import jwtDecode from 'jwt-decode';
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import { getToken } from '../services/AuthAPI';
-const axios = require('axios')
-
-function MyFormHelper() {
-    const {required} = useFormControl() || {}
-
-    const helperText = React.useMemo(() => {
-        if(required) {
-            return 'Sah'
-        }
-    }, [required])
-
-    return <FormHelperText>{helperText}</FormHelperText>
-}
+import AxiosClient from '../services/AxiosClient';
 
 const ChangePassword = () => {
     const [user, setUser] = useState({
@@ -57,7 +45,7 @@ const ChangePassword = () => {
             return            
         }
 
-        axios.post('http://localhost:8000/changePassword/',user)
+        AxiosClient.post('changePassword/',user)
             .then((res) => {
                 console.log(res);
             })
@@ -70,7 +58,6 @@ const ChangePassword = () => {
                 <Box sx={{height:'50%', display:'flex', flexDirection:'column', justifyContent:'space-evenly'}}>
                     <FormControl>
                         <OutlinedInput name='oldPwd' type='password' placeholder='Ancien mot de passe' onChange={handleChange} onKeyPress={enterSubmit}/>
-                        <MyFormHelper/>
                     </FormControl>
 
                     <FormControl>
