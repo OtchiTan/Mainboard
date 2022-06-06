@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Panel from './pages/Panel';
 import Portfolio from './pages/Portfolio';
+import PortfolioProject from './pages/PortfolioProject';
 import {hasAuthenticated} from './services/AuthAPI';
 
 const App = () => {
@@ -27,6 +28,11 @@ const App = () => {
           <Route path='/portfolio' element={
             <RequireAuth>
               <Portfolio/>
+            </RequireAuth>
+          }/>
+          <Route path='/portfolio/:id' element={
+            <RequireAuth>
+              <PortfolioProject/>
             </RequireAuth>
           }/>
           <Route path='/changePassword' element={

@@ -15,11 +15,15 @@ export function hasAuthenticated() {
 
 export function login(credentials) {
     return axios
-        .post('https://otchi.games:8000/loginAttempt', credentials)
+        .post('http://localhost:8000/loginAttempt', credentials)
         .then(res => res.data.token)
         .then(token => {
-            addItem('authToken',token)
-            return tokenIsValid(token)
+            if (tokenIsValid(token)) {
+                addItem('authToken',token)
+                return tokenIsValid(token)
+            } else {
+                return false
+            }
         })
 }
 
@@ -28,9 +32,16 @@ export function logout() {
 }
 
 export function tokenIsValid(token) {
-    const {exp} = jwtDecode(token)
-
-    if (exp * 1000 > new Date().getTime()) {
+    var expiration = null
+    try {
+        const { exp } = jwtDecode(token)
+        expiration = exp
+    }
+    catch (error) {
+        
+    }
+    
+    if (expiration * 1000 > new Date().getTime()) {
         return true
     } else {
         return false

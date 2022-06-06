@@ -57,7 +57,7 @@ const ChangePassword = () => {
             return            
         }
 
-        axios.post('https://otchi.games:8000/changePassword/',user)
+        axios.post('http://localhost:8000/changePassword/',user)
             .then((res) => {
                 console.log(res);
             })

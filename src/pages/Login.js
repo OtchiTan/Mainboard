@@ -1,4 +1,4 @@
-import { Box, Button, Paper, TextField } from '@mui/material';
+import { Box, Button, FormControl, FormHelperText, Paper, TextField } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import Navigation from '../components/Navigation';
 import Auth from '../context/Auth';
@@ -11,6 +11,9 @@ const Login = () => {
         login:'',
         pwd:''
     })
+
+    const [errorMessage, setErrorMessage] = useState(null)
+    const [error, setError] = useState(false)
 
     const handleChange = ({currentTarget}) => {
         const { name, value } = currentTarget;
@@ -25,6 +28,9 @@ const Login = () => {
             const res = await login(user)
             if (res) {
                 setIsAuthenticated(res)
+            } else {
+                setErrorMessage('Wrong Login Or Password')
+                setError(true)
             }
         } catch (error) {
             console.log(error);
@@ -35,11 +41,12 @@ const Login = () => {
         <Box height="90vh">
             <Navigation/>              
             <Paper sx={{marginTop:'5rem', marginX:'3rem', height:'85vh', display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                <Box component='form' action='/' sx={{display:'flex', flexDirection:'column', justifyContent:'space-evenly', height:'30%'}}>
+                <FormControl component='form' error={error} action='/' sx={{display:'flex', flexDirection:'column', justifyContent:'space-evenly', height:'30%'}}>
+                    <FormHelperText>{errorMessage}</FormHelperText>
                     <TextField type='text' name='login' color='secondary' variant='outlined' label='Login' onChange={handleChange}/>
                     <TextField type='password' name='pwd' color='secondary' variant='outlined' label='Password' onChange={handleChange}/>
                     <Button type='submit' variant='contained' onClick={handleSubmit}>Se connecter</Button>
-                </Box>
+                </FormControl>
             </Paper>  
         </Box>
     );
